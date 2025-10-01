@@ -17,7 +17,8 @@ void setup() {
 
 void loop() {
   PPM = analogRead(GAS_SENSOR_PIN);
-  Serial.println("PPM : %d\n", PPM);
+  Serial.print("PPM : ");
+  Serial.println(PPM);
   if(PPM >= 4000) { // 폭팔 임계인 40000의 10%
     Serial.println("WARNING!!!!\n");
     digitalWrite(LED_RED_PIN, HIGH);
@@ -34,7 +35,7 @@ void loop() {
     delay(500);
   }
   else {
-    Serial.println("SAFE~~\n");
+    Serial.println("SAFE~~");
     digitalWrite(LED_RED_PIN, LOW);
     digitalWrite(LED_YELLOW_PIN, LOW);
 
