@@ -4,22 +4,26 @@ const int LED_YELLOW_PIN = 12;   // 노란색 LED 핀 (경고 2)
 const int BUZZER_PIN = 11;       // 수동 부저 핀 (경고음)
 
 int PPM = 0;
+int count = 1;
 
 
 void setup() {
   pinMode(LED_RED_PIN, OUTPUT);
   pinMode(LED_YELLOW_PIN, OUTPUT);
   pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(GAS_SENSOR_PIN, INPUT);
 
   Serial.begin(9600);
 
 }
 
 void loop() {
+  Serial.print("Count : ");
+  Serial.println(count++);
   PPM = analogRead(GAS_SENSOR_PIN);
   Serial.print("PPM : ");
   Serial.println(PPM);
-  if(PPM >= 4000) { // 폭팔 임계인 40000의 10%
+  if(PPM >= 1000) { // 폭팔 임계인 40000의 10%
     Serial.println("WARNING!!!!\n");
     digitalWrite(LED_RED_PIN, HIGH);
     digitalWrite(LED_YELLOW_PIN, HIGH);
@@ -44,7 +48,7 @@ void loop() {
     delay(500);
 
   }
-  delay(200);
+  delay(400);
 
 
 }
